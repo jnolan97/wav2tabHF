@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  audio-tab-gen:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: audio-tab-gen:latest
+    container_name: audio-tab-gen
+    volumes:
+      - ./input:/input:ro   # ⇦ drop .mp3/.wav/.flac files here
+      - ./output:/output    # ⇦ results dumped here
+    # Uncomment to leverage NVIDIA GPUs (Docker ≥ 19.03, nvidia‑container‑toolkit installed)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - capabilities: [gpu]
+    # runtime: nvidia  # legacy flag if not using the compose‑v3 deploy block
